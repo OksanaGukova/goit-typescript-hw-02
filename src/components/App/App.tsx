@@ -8,17 +8,19 @@ import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
 import ReactModal from "react-modal";
 import css from './App.module.css'
+import { ImageCardProp, Images } from "./App.types";
 
 export default function App() {
-  const [images, setImages] = useState([]);
-  const [query, setQuery] = useState("");
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
-  const [error, setError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [noResults, setNoResults] = useState(false);
+  const [images, setImages] = useState<ImageCardProp[]>([]);
+  const [query, setQuery] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(0);
+  const [error, setError] = useState<string | boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [selectedImage, setSelectedImage] = useState<Images | null>(null);
+  const [noResults, setNoResults] = useState<boolean>(false);
 
+ 
   ReactModal.setAppElement("#root");
 
   useEffect(() => {
@@ -27,15 +29,14 @@ export default function App() {
     const getImages = async () => {
       setIsLoading(true);
       setError(false);
-       setNoResults(false);
+      setNoResults(false);
       try {
         const { results, total_pages } = await fetchImages(query, page);
-         if (results.length === 0) {
-           setNoResults(true); 
-         }
-        setImages((prev) => (page === 1 ? results : [...prev, ...results])); 
+        if (results.length === 0) {
+          setNoResults(true);
+        }
+        setImages((prev) => (page === 1 ? results : [...prev, ...results]));
         setTotalPages(total_pages);
-        
       } catch (error) {
         setError(true);
       } finally {
@@ -45,14 +46,14 @@ export default function App() {
     getImages();
   }, [query, page]);
 
-  const handleSearch = (searchQuery) => {
+  const handleSearch = (searchQuery: string) => {
     if (searchQuery === query) return;
     setQuery(searchQuery);
     setPage(1); 
     setImages([]);
   };
 
-  const handleImageClick = (image) => {
+  const handleImageClick = (image: Images) => {
     setSelectedImage(image);
   };
 
@@ -62,7 +63,8 @@ export default function App() {
   
     const closeModal = () => {
       setSelectedImage(null);
-    };
+  };
+  
 
   return (
     <div>
@@ -85,3 +87,5 @@ export default function App() {
     </div>
   );
 }
+
+
