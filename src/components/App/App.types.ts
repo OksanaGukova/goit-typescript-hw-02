@@ -1,6 +1,7 @@
 import { MouseEventHandler } from "react";
 
 export interface Images {
+
   url: string;
   description: null | string
   author: string;
