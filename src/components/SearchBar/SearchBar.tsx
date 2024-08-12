@@ -1,18 +1,19 @@
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import css from "./SearchBar.module.css";
 import { FaSearch } from "react-icons/fa";
+import { SearchBarProps } from "../App/App.types";
 
-export default function SearchBar({ onSubmit }) {
-  const [query, setQuery] = useState("");
+export default function SearchBar({ onSubmit }: SearchBarProps) {
+  const [query, setQuery] = useState<string>("");
 
   const notify = () => toast("Please enter text for the image search");
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setQuery(e.target.value);
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     const searchQuery = query.trim();
 
@@ -43,8 +44,6 @@ export default function SearchBar({ onSubmit }) {
             className={css.input}
           />
           </div>
-         
-         
         </form>
         <Toaster position="top-right" />
       </header>

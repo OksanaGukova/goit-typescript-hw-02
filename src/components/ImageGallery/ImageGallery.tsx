@@ -1,4 +1,4 @@
-import { ImageGalleryProps, ImageCardProp } from "../App/App.types";
+import { ImageGalleryProps, ImageCardItem } from "../App/App.types";
 import ImageCard from "../ImageCard/ImageCard";
 import css from './ImageGallery.module.css'
 
@@ -12,7 +12,7 @@ export default function ImageGallery({ photos, onPhotosClick }: ImageGalleryProp
           description,
           user: { name },
           likes,
-        }: ImageCardProp) => (
+        }: ImageCardItem) => (
           <li className={css.photoContainer} key={id}>
             <ImageCard
               url={small}

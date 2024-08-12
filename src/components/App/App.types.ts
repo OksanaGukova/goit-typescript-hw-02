@@ -1,11 +1,10 @@
 import { MouseEventHandler } from "react";
 
 export interface Images {
-
   url: string;
-  description: null | string
+  description: string | undefined
   author: string;
-  likes: number
+  likes: number;
 }
 
 export interface ErrorMessageProps {
@@ -17,20 +16,39 @@ export interface ImageCardProps {
   onImageClick: MouseEventHandler<HTMLDivElement>;
 }
 
-export interface ImageCardProp {
+export interface ImageCardItem {
   id: number;
   urls: {
     small: string;
     regular: string;
   };
-  description: string | null;
+  description: string | undefined;
   user: { name: string };
   likes: number;
+
 };
 
 
-
 export interface ImageGalleryProps {
-  photos: ImageCardProp[];
+  photos: ImageCardItem[];
   onPhotosClick: (image: Images) => void;
+}
+
+export interface ImageModalProps {
+  isOpen: boolean;
+  onRequestClose: () => void;
+  image: Images;
+}
+
+export interface LoadMoreBtnProps {
+  onClick: () => void;
+}
+
+export interface SearchBarProps {
+  onSubmit: (searchQuery: string) => void;
+}
+
+export interface UnsplashResponse {
+  results: ImageCardItem[];
+  total_pages: number;
 }

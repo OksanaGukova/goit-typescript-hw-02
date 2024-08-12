@@ -1,6 +1,8 @@
-import css from "./LoadMoreBtn.module.css";
 
-export default function LoadMoreBtn({ onClick }) {
+import css from "./LoadMoreBtn.module.css";
+import { LoadMoreBtnProps } from "../App/App.types";
+
+export default function LoadMoreBtn({ onClick }: LoadMoreBtnProps) {
   return (
     <button className={css.loadMore} onClick={onClick}>
       Load more
@@ -9,4 +11,3 @@ export default function LoadMoreBtn({ onClick }) {
 }
 
 
-{/* <button onClick={() => setPage((prevPage) => prevPage + 1)}>Load more</button>; */}

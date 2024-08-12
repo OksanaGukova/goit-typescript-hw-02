@@ -1,10 +1,11 @@
 import ReactModal from "react-modal";
 import css from './ImageModal.module.css'
 import { useEffect } from "react";
+import { ImageModalProps } from "../App/App.types";
 
-export default function ImageModal({ isOpen, onRequestClose, image }) {
+export default function ImageModal({ isOpen, onRequestClose, image }: ImageModalProps) {
   useEffect(() => {
-    const handleEsc = (event) => {
+    const handleEsc = (event: globalThis.KeyboardEvent) => {
       if (event.key === "Escape") {
         onRequestClose();
       }
@@ -15,7 +16,7 @@ export default function ImageModal({ isOpen, onRequestClose, image }) {
     };
   }, [onRequestClose]);
 
-  const handleOverlayClick = (event) => {
+  const handleOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
       onRequestClose();
     }

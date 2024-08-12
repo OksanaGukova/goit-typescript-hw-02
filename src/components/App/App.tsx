@@ -8,10 +8,10 @@ import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
 import ReactModal from "react-modal";
 import css from './App.module.css'
-import { ImageCardProp, Images } from "./App.types";
+import { ImageCardItem, Images } from "./App.types";
 
 export default function App() {
-  const [images, setImages] = useState<ImageCardProp[]>([]);
+  const [images, setImages] = useState<ImageCardItem[]>([]);
   const [query, setQuery] = useState<string>("");
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(0);
